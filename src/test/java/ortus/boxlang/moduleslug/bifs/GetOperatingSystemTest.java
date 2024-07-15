@@ -1,6 +1,6 @@
 package ortus.boxlang.moduleslug.bifs;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertThat;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,7 @@ import ortus.boxlang.runtime.scopes.IScope;
 import ortus.boxlang.runtime.scopes.Key;
 import ortus.boxlang.runtime.scopes.VariablesScope;
 
-public class ExampleJavaBIFTest {
+public class GetOperatingSystemTest {
 
 	static BoxRuntime	instance;
 	IBoxContext			context;
@@ -32,11 +32,16 @@ public class ExampleJavaBIFTest {
 		variables	= context.getScopeNearby( VariablesScope.name );
 	}
 
-	@DisplayName( "It can test the ExampleBIF" )
+	@DisplayName( "It can test the operating system class" )
 	@Test
-	public void testExampleBIF() {
-		instance.executeSource( "result = ExampleJavaBIF()", context );
-		assertEquals( "Hello from an ExampleJavaBIF!", variables.get( result ) );
+	public void testGetOperatingSystem() {
+		// @formatter:off
+		instance.executeSource(
+		    """
+		    result = getOperatingSystem();
+		    """,
+		    context );
+		// @formatter:on
+		assertThat( variables.get( result ) ).isNotNull();
 	}
-
 }

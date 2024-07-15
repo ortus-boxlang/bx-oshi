@@ -1,22 +1,22 @@
 {
-	"name": "@MODULE_NAME@",
+	"name": "BoxLang OS & Hardware Info",
 	"version": "@build.version@+@build.number@",
-	"location": "https://downloads.ortussolutions.com/ortussolutions/boxlang-modules/@MODULE_SLUG@/@build.version@/@MODULE_SLUG@-@build.version@.zip",
+	"location": "https://downloads.ortussolutions.com/ortussolutions/boxlang-modules/bx-oshi/@build.version@/bx-oshi-@build.version@.zip",
 	"author": "Ortus Solutions",
-	"homepage": "https://github.com/boxlang-modules/@MODULE_SLUG@",
-	"documentation": "https://github.com/boxlang-modules/@MODULE_SLUG@",
+	"homepage": "https://github.com/boxlang-modules/bx-oshi",
+	"documentation": "https://github.com/boxlang-modules/bx-oshi",
 	"repository": {
 		"type": "git",
-		"URL": "https://github.com/boxlang-modules/@MODULE_SLUG@"
+		"URL": "https://github.com/boxlang-modules/bx-oshi"
 	},
-	"bugs": "https://github.com/boxlang-modules/@MODULE_SLUG@/issues",
-	"slug": "@MODULE_SLUG@",
+	"bugs": "https://github.com/boxlang-modules/bx-oshi/issues",
+	"slug": "bx-oshi",
 	"shortDescription": "Module template for BoxLang modules",
 	"type": "boxlang-modules",
 	"keywords": ["boxlang"],
 	"boxlang": {
 		"minimumVersion": "1.0.0",
-		"moduleName": "@MODULE_REGISTERED_NAME@"
+		"moduleName": "oshi"
 	},
 	"private": false,
 	"license": [

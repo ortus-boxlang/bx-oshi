@@ -1,4 +1,4 @@
-# ⚡︎ BoxLang Module: @MODULE_NAME@
+# ⚡︎ BoxLang OS & Hardware Info
 
 ```
 |:------------------------------------------------------:|
@@ -16,106 +16,48 @@
 
 <p>&nbsp;</p>
 
-This template can be used to create Ortus based BoxLang Modules.  To use, just click the `Use this Template` button in the github repository: https://github.com/boxlang-modules/module-template and run the setup task from where you cloned it.
+## Welcome to BoxLang OSHI
 
-```bash
-box task run taskFile=src/build/SetupTemplate
-```
+This module is based on the great work of the `oshi` library https://github.com/oshi/oshi?tab=readme-ov-file#documentation.  You can use this module to get information about the Operating System and Hardware of the machine you are running on.  This is a great way to even get sensor information or embedded system information like battery, raspberry pi, etc.
 
-The `SetupTemplate` task will ask you for your module name, id and description and configure the template for you! Enjoy!
+> OSHI is a free JNA-based (native) Operating System and Hardware Information library for Java. It does not require the installation of any additional native libraries and aims to provide a cross-platform implementation to retrieve system information, such as OS version, processes, memory and CPU usage, disks and partitions, devices, sensors, etc.
 
-## Directory Structure
+## Supported Features
 
-Here is a brief overview of the directory structure:
+* Computer System and firmware, baseboard
+* Operating System and Version/Build
+* Physical (core) and Logical (hyperthreaded) CPUs, processor groups, NUMA nodes
+* System and per-processor load, usage tick counters, interrupts, uptime
+* Process uptime, CPU, memory usage, user/group, command line args, thread details
+* Physical and virtual memory used/available
+* Mounted filesystems (type, usable and total space, options, reads and writes)
+* Disk drives (model, serial, size, reads and writes) and partitions
+* Network interfaces (IPs, bandwidth in/out), network parameters, TCP/UDP statistics
+* Battery state (% capacity, time remaining, power usage stats)
+* USB Devices
+* Connected displays (with EDID info), graphics and audio cards
+* Sensors (temperature, fan speeds, voltage) on some hardware
 
-* `.github/workflows` - These are the github actions to test and build the module via CI
-* `build` - This is a temporary non-sourced folder that contains the build assets for the module that gradle produces
-* `gradle` - The gradle wrapper and configuration
-* `src` - Where your module source code lives
-* `.cfformat.json` - A CFFormat using the Ortus Standards
-* `.editorconfig` - Smooth consistency between editors
-* `.gitattributes` - Git attributes
-* `.gitignore` - Basic ignores. Modify as needed.
-* `.markdownlint.json` - A linting file for markdown docs
-* `.ortus-java-style.xml` - Ortus Java Style for IntelliJ, VScode, Eclipse.
-* `box.json` - The box.json for your module used to publish to ForgeBox
-* `build.gradle` - The gradle build file for the module
-* `changelog.md` - A nice changelog tracking file
-* `CONTRIBUTING.md` - A contribution guideline
-* `gradlew` - The gradle wrapper
-* `gradlew.bat` - The gradle wrapper for windows
-* `ModuleConfig.cfc` - Your module's configuration. Modify as needed.
-* `readme.md` - Your module's readme. Modify as needed.
-* `settings.gradle` - The gradle settings file
+## Contributed Functions
 
-Here is a brief overview of the source directory structure:
+Here are the contributed functions in this module:
 
-* `build` - Build scripts and assets
-* `main` - The main module source code
-  * `bx` - The BoxLang source code
-  * `ModuleConfig.bx` - The BoxLang module configuration
-    * `bifs` - BoxLang built-in functions
-    * `components` - BoxLang components
-    * `config` - BoxLang configuration, schedulers, etc.
-    * `interceptors` - BoxLang interceptors
-    * `libs` - Java libraries to use that are NOT managed by gradle
-    * `models` - BoxLang models
-  * `java` - Java source code
-  * `resources` - Resources for the module placed in final jar
-* `test`
-  * `bx` - The BoxLang test code
-  * `java` - Java test code
-  * `resources` - Resources for testing
-    * `libs` - BoxLang binary goes here for now.
+* `getSystemInfo()` : Get's the main entry point for the OSHI system: https://www.oshi.ooo/oshi-core-java11/apidocs/com.github.oshi/oshi/SystemInfo.html
+* `getOperatingSystem()` : Get's the Operating System information: https://www.oshi.ooo/oshi-core-java11/apidocs/com.github.oshi/oshi/software/os/OperatingSystem.html
+* `getHardware()` : Get's the Hardware information: https://www.oshi.ooo/oshi-core-java11/apidocs/com.github.oshi/oshi/hardware/HardwareAbstractionLayer.html
 
-## Project Properties
+The following are also contributed functions provided by convenience:
 
-The project name is defined in the `settings.gradle` file.  You can change it there.
-The project version, BoxLang Version and JDK version is defined in the `build.gradle` file.  You can change it there.
+* `getCpuUsage( [interval] )` : Gets the CPU usage of the system with a custom interval
+* `getFreeSpace( path )` : Gets the free space of a drive
+* `getTotalSpace( path )` : Gets the total space of a drive
+* `getSystemFreeMemory()` : Gets the free memory of the operating system
+* `getSystemTotalMemory()` : Gets the total memory of the operating system
+* `getJVMFreeMemory()` : Gets the free memory of the JVM
+* `getJVMTotalMemory()` : Gets the total memory of the JVM
+* `getJVMMaxMemory()` : Gets the max memory of the JVM
 
-## Gradle Tasks
-
-Before you get started, you need to run the `downloadBoxLang` task in order to download the latest BoxLang binary until we publish to Maven.
-
-```bash
-gradle downloadBoxLang
-```
-
-This will store the binary under `/src/test/resources/libs` for you to use in your tests and compiler. Here are some basic tasks
-
-
-| Task                | Description                                                                                                        	|
-|---------------------|---------------------------------------------------------------------------------------------------------------------|
-| `build`             | The default lifecycle task that triggers the build process, including tasks like `clean`, `assemble`, and others. 	|
-| `clean`             | Deletes the `build` folders. It helps ensure a clean build by removing any previously generated artifacts.			|
-| `compileJava`       | Compiles Java source code files located in the `src/main/java` directory											|
-| `compileTestJava`   | Compiles Java test source code files located in the `src/test/java` directory										|
-| `dependencyUpdates` | Checks for updated versions of all dependencies															 			|
-| `downloadBoxLang`   | Downloads the latest BoxLang binary for testing																		|
-| `jar`               | Packages your project's compiled classes and resources into a JAR file `build/libs` folder							|
-| `javadoc`           | Generates the Javadocs for your project and places them in the `build/docs/javadoc` folder							|
-| `serviceLoader`     | Generates the ServiceLoader file for your project																	|
-| `spotlessApply`     | Runs the Spotless plugin to format the code																			|
-| `spotlessCheck`     | Runs the Spotless plugin to check the formatting of the code														|
-| `tasks`			  | Show all the available tasks in the project																			|
-| `test`              | Executes the unit tests in your project and produces the reports in the `build/reports/tests` folder				|
-
-## Tests
-
-Please use the `src/test` folder for your unit tests.  You can either test using TestBox o JUnit if it's Java.
-
-## Github Actions Automation
-
-The github actions will clone, test, package, deploy your module to ForgeBox and the Ortus S3 accounts for API Docs and Artifacts.  So please make sure the following environment variables are set in your repository.
-
-> Please note that most of them are already defined at the org level
-
-* `FORGEBOX_TOKEN` - The Ortus ForgeBox API Token
-* `AWS_ACCESS_KEY` - The travis user S3 account
-* `AWS_ACCESS_SECRET` - The travis secret S3
-
-> Please contact the admins in the `#infrastructure` channel for these credentials if needed
-
+Please note that with access to the hardware and operating system, you can get a lot more information.  Please visit the OSHI documentation for more information: https://www.oshi.ooo/oshi-core-java11/apidocs/com.github.oshi/oshi/package-summary.html
 
 ## Ortus Sponsors
 
