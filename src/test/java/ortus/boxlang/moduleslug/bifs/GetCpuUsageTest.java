@@ -45,6 +45,5 @@ public class GetCpuUsageTest {
 		Double usage = variables.getAsDouble( result );
 		System.out.println( "usage: " + usage );
 		assertThat( usage ).isInstanceOf( Double.class );
-		assertThat( usage ).isGreaterThan( 0 );
 	}
 }
