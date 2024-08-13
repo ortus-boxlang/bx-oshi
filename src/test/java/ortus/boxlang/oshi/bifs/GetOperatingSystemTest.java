@@ -1,4 +1,4 @@
-package ortus.boxlang.moduleslug.bifs;
+package ortus.boxlang.oshi.bifs;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -14,7 +14,7 @@ import ortus.boxlang.runtime.scopes.IScope;
 import ortus.boxlang.runtime.scopes.Key;
 import ortus.boxlang.runtime.scopes.VariablesScope;
 
-public class GetSystemFreeMemoryTest {
+public class GetOperatingSystemTest {
 
 	static BoxRuntime	instance;
 	IBoxContext			context;
@@ -32,17 +32,16 @@ public class GetSystemFreeMemoryTest {
 		variables	= context.getScopeNearby( VariablesScope.name );
 	}
 
-	@DisplayName( "It can test the bif" )
+	@DisplayName( "It can test the operating system class" )
 	@Test
-	public void testBif() {
+	public void testGetOperatingSystem() {
 		// @formatter:off
 		instance.executeSource(
 		    """
-		    result = GetSystemFreeMemory();
+		    result = getOperatingSystem();
 		    """,
 		    context );
 		// @formatter:on
-		System.out.println( variables.get( result ) );
 		assertThat( variables.get( result ) ).isNotNull();
 	}
 }

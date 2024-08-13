@@ -1,4 +1,4 @@
-package ortus.boxlang.moduleslug.bifs;
+package ortus.boxlang.oshi.bifs;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -13,8 +13,9 @@ import ortus.boxlang.runtime.context.ScriptingRequestBoxContext;
 import ortus.boxlang.runtime.scopes.IScope;
 import ortus.boxlang.runtime.scopes.Key;
 import ortus.boxlang.runtime.scopes.VariablesScope;
+import ortus.boxlang.runtime.types.IStruct;
 
-public class GetSystemMemoryTest {
+public class GetProfileSectionsTest {
 
 	static BoxRuntime	instance;
 	IBoxContext			context;
@@ -32,17 +33,23 @@ public class GetSystemMemoryTest {
 		variables	= context.getScopeNearby( VariablesScope.name );
 	}
 
-	@DisplayName( "It can test the getSystemInfo bif" )
+	@DisplayName( "It can test the bif" )
 	@Test
-	public void testGetSystemInfo() {
+	public void testBif() {
 		// @formatter:off
 		instance.executeSource(
 		    """
-		    result = getSystemTotalMemory();
+		    result = getProfileSections( expandPath( "/src/test/resources/test.ini" ) );
 		    """,
 		    context );
 		// @formatter:on
-		System.out.println( variables.get( result ) );
-		assertThat( variables.get( result ) ).isNotNull();
+
+		IStruct sResult = variables.getAsStruct( result );
+		assertThat( sResult ).isNotEmpty();
+		assertThat( sResult.getKeysAsStrings() ).containsExactly( "General", "Database", "Logging", "Features" );
+		assertThat( sResult.containsKey( "General" ) ).isTrue();
+		assertThat( sResult.containsKey( "Database" ) ).isTrue();
+		assertThat( sResult.containsKey( "Logging" ) ).isTrue();
+		assertThat( sResult.containsKey( "Features" ) ).isTrue();
 	}
 }

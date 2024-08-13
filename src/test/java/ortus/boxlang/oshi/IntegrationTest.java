@@ -1,4 +1,4 @@
-package ortus.boxlang.moduleslug;
+package ortus.boxlang.oshi;
 
 import static com.google.common.truth.Truth.assertThat;
 
