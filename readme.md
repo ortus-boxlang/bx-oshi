@@ -24,7 +24,6 @@ This module is based on the great work of the `oshi` library https://github.com/
 
 ## Supported Features
 
-* Read/Write system information from ini files
 * Computer System and firmware, baseboard
 * Operating System and Version/Build
 * Physical (core) and Logical (hyperthreaded) CPUs, processor groups, NUMA nodes
