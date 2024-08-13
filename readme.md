@@ -88,7 +88,7 @@ maxConnections=100
 
 You can use the following functions to read and write ini files:
 
-* `getInitFile( file )` : Reads an ini file and returns the IniFile object. If the file does not exist, it will create it.
+* `getIniFile( file )` : Reads an ini file and returns the IniFile object. If the file does not exist, it will create it.
 * `getProfileSection( iniFile, section )` : Gets a section from the ini file as a struct
 * `getProfileSections( iniFile )` : Gets all the sections from the ini file as a struct of structs
 * `getProfileString( iniFile, section, entry )` : Gets an entry from a section in the ini file, if it does not exist, it will return an empty string
@@ -101,7 +101,7 @@ The `IniFile` object is a fluent object that allows you to work with ini files i
 ```java
 
 // Get the ini file
-var iniFile = getInitFile( "test.ini" );
+var iniFile = getIniFile( "test.ini" );
 iniFile.createSection( "mySettings" );
 // Set a string
 iniFile.setEntry( "section1", "entry1", "value1" );
