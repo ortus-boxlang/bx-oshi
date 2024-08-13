@@ -1,4 +1,4 @@
-package ortus.boxlang.moduleslug.bifs;
+package ortus.boxlang.oshi.bifs;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -14,7 +14,7 @@ import ortus.boxlang.runtime.scopes.IScope;
 import ortus.boxlang.runtime.scopes.Key;
 import ortus.boxlang.runtime.scopes.VariablesScope;
 
-public class GetSystemInfoTest {
+public class GetHardwareTest {
 
 	static BoxRuntime	instance;
 	IBoxContext			context;
@@ -38,11 +38,12 @@ public class GetSystemInfoTest {
 		// @formatter:off
 		instance.executeSource(
 		    """
-		    result = getSystemInfo();
-			result.getHardware()
+		    hal = getHardware();
+			result = hal.getProcessor();
 		    """,
 		    context );
 		// @formatter:on
 		assertThat( variables.get( result ) ).isNotNull();
+		assertThat( variables.get( Key.of( "hal" ) ) ).isNotNull();
 	}
 }

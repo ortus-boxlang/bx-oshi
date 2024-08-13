@@ -1,4 +1,4 @@
-package ortus.boxlang.moduleslug.bifs;
+package ortus.boxlang.oshi.bifs;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -14,7 +14,7 @@ import ortus.boxlang.runtime.scopes.IScope;
 import ortus.boxlang.runtime.scopes.Key;
 import ortus.boxlang.runtime.scopes.VariablesScope;
 
-public class GetJVMTotalMemoryTest {
+public class GetJVMFreeMemoryTest {
 
 	static BoxRuntime	instance;
 	IBoxContext			context;
@@ -38,7 +38,7 @@ public class GetJVMTotalMemoryTest {
 		// @formatter:off
 		instance.executeSource(
 		    """
-		    result = getJVMTotalMemory();
+		    result = getJVMFreeMemory();
 		    """,
 		    context );
 		// @formatter:on

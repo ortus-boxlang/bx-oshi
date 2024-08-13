@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Ini file support functions
+
 ## [1.0.0] - 2024-07-15
 
 - First iteration of this module

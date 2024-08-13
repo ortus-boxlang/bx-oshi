@@ -1,4 +1,4 @@
-package ortus.boxlang.moduleslug.bifs;
+package ortus.boxlang.oshi.bifs;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -14,7 +14,7 @@ import ortus.boxlang.runtime.scopes.IScope;
 import ortus.boxlang.runtime.scopes.Key;
 import ortus.boxlang.runtime.scopes.VariablesScope;
 
-public class GetOperatingSystemTest {
+public class GetCpuUsageTest {
 
 	static BoxRuntime	instance;
 	IBoxContext			context;
@@ -32,16 +32,18 @@ public class GetOperatingSystemTest {
 		variables	= context.getScopeNearby( VariablesScope.name );
 	}
 
-	@DisplayName( "It can test the operating system class" )
+	@DisplayName( "It can test the getcpuusage bif" )
 	@Test
-	public void testGetOperatingSystem() {
+	public void testBif() {
 		// @formatter:off
 		instance.executeSource(
 		    """
-		    result = getOperatingSystem();
+		    result = getCPUUsage();
 		    """,
 		    context );
 		// @formatter:on
-		assertThat( variables.get( result ) ).isNotNull();
+		Double usage = variables.getAsDouble( result );
+		System.out.println( "usage: " + usage );
+		assertThat( usage ).isInstanceOf( Double.class );
 	}
 }

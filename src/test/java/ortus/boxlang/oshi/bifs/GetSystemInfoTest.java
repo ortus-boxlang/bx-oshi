@@ -1,4 +1,4 @@
-package ortus.boxlang.moduleslug.bifs;
+package ortus.boxlang.oshi.bifs;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledOnOs;
-import org.junit.jupiter.api.condition.OS;
 
 import ortus.boxlang.runtime.BoxRuntime;
 import ortus.boxlang.runtime.context.IBoxContext;
@@ -16,7 +14,7 @@ import ortus.boxlang.runtime.scopes.IScope;
 import ortus.boxlang.runtime.scopes.Key;
 import ortus.boxlang.runtime.scopes.VariablesScope;
 
-public class GetTotalSpaceTest {
+public class GetSystemInfoTest {
 
 	static BoxRuntime	instance;
 	IBoxContext			context;
@@ -34,19 +32,17 @@ public class GetTotalSpaceTest {
 		variables	= context.getScopeNearby( VariablesScope.name );
 	}
 
-	@DisplayName( "It can test the bif" )
-	@EnabledOnOs( { OS.LINUX, OS.MAC } )
+	@DisplayName( "It can test the getSystemInfo bif" )
 	@Test
-	public void testBif() {
+	public void testGetSystemInfo() {
 		// @formatter:off
 		instance.executeSource(
-			"""
-			result = getTotalSpace( "/" );
-			""",
-			context );
+		    """
+		    result = getSystemInfo();
+			result.getHardware()
+		    """,
+		    context );
 		// @formatter:on
-		var usage = variables.get( result );
-		System.out.println( "Total space: " + usage );
-		assertThat( usage ).isNotNull();
+		assertThat( variables.get( result ) ).isNotNull();
 	}
 }
