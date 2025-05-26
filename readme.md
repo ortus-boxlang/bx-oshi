@@ -58,61 +58,7 @@ The following are also contributed functions provided by convenience:
 
 ### Ini Files Support
 
-This module also provides a way to read and write initialization files.
-
-```ini
-[General]
-appName=MyApplication
-version=1.2.3
-author=John Doe
-boxlang=rocks
-
-[Database]
-host=localhost
-port=5432
-username=dbuser
-password=dbpass
-dbname=mydatabase
-
-[Logging]
-logLevel=DEBUG
-logFile=/var/log/myapp.log
-maxFileSize=10MB
-
-[Features]
-enableFeatureX=true
-enableFeatureY=false
-maxConnections=100
-```
-
-You can use the following functions to read and write ini files:
-
-* `getIniFile( file )` : Reads an ini file and returns the IniFile object. If the file does not exist, it will create it.
-* `getProfileSection( iniFile, section )` : Gets a section from the ini file as a struct
-* `getProfileSections( iniFile )` : Gets all the sections from the ini file as a struct of structs
-* `getProfileString( iniFile, section, entry )` : Gets an entry from a section in the ini file, if it does not exist, it will return an empty string
-* `setProfileString( iniFile, section, entry, value )` : Sets an entry in a section in the ini file, if the section does not exist, it will create it
-* `removeProfileSection( iniFile, section )` : Removes a section from the ini file
-* `removeProfileString( iniFile, section, entry )` : Removes an entry from a section in the ini file
-
-The `IniFile` object is a fluent object that allows you to work with ini files in a very easy way.  Here is an example of how to use it:
-
-```java
-
-// Get the ini file
-var iniFile = getIniFile( "test.ini" );
-iniFile.createSection( "mySettings" );
-// Set a string
-iniFile.setEntry( "section1", "entry1", "value1" );
-// Get a string
-var value = iniFile.getEntry( "section1", "entry1" );
-// Remove a string
-iniFile.removeEntry( "section1", "entry1" );
-// Remove a section
-iniFile.removeSection( "section1" );
-```
-
-Please note that with access to the hardware and operating system, you can get a lot more information.  Please visit the OSHI documentation for more information: https://www.oshi.ooo/oshi-core-java11/apidocs/com.github.oshi/oshi/package-summary.html
+In order to leverage ini files, you can install the `bx-ini` module, which provides a fluent API to work with ini files.  The ini file format is a simple key-value pair format that allows you to store configuration settings in a human-readable format.
 
 ## Ortus Sponsors
 

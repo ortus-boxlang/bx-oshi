@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New docs
+- Pin BoxLang versions now that we are released
+- Standardized the `enabled` flag in the config file
+
+### Fixed
+
+- Bump version gradle fixes
+
 ## [1.2.0] - 2024-08-13
 
 ### Removed
