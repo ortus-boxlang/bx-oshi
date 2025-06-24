@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bumps com.github.oshi:oshi-core from 6.6.1 to 6.8.2.
 
-
 ## [1.3.0] - 2025-05-26
 
 ### Added
