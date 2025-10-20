@@ -46,7 +46,7 @@ dependencies {
 	}
 
 	// Add Latest OSHI Library
-	implementation 'com.github.oshi:oshi-core:6.8.2'
+	implementation 'com.github.oshi:oshi-core:6.9.1'
 
 	// Test Frameworks
 	testImplementation "org.junit.jupiter:junit-jupiter:5.+"
